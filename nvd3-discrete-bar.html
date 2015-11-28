@@ -1,0 +1,43 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../nvd3-behavior/nvd3-behavior.html">
+
+<!--
+An element to create discrete bar chart using nvd3.
+
+Example:
+
+    <nvd3-discrete-bar data="[[data]]"></nvd3-discrete-bar>
+
+@group NVD3 Elements
+@element nvd3-discrete-bar
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-discrete-bar">
+  <template>
+    <div>
+      <svg id="svg"></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-discrete-bar',
+      behaviors: [NVD3.ChartBehavior],
+
+      attached: function() {
+        this.set('svg', this.$.svg);
+        this.set('chart', nv.models.discreteBarChart()
+          .x(function(d) {
+            return d.label
+          })
+          .y(function(d) {
+            return d.value
+          }));
+
+        this.generateChart();
+      }
+    });
+  </script>
+</dom-module>
