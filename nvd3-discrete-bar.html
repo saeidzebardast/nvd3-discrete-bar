@@ -6,7 +6,11 @@ An element to create discrete bar chart using nvd3.
 
 Example:
 
-    <nvd3-discrete-bar data="[[data]]"></nvd3-discrete-bar>
+    <nvd3-discrete-bar
+      data="[[data]]"
+      height="100"
+      width="400">
+    </nvd3-discrete-bar>
 
 Data Format:
 ```
@@ -140,14 +144,6 @@ Data Format:
 
       _setNoData: function(noData) {
         this.chart.noData(this.noData);
-      },
-
-      _setShowLegend: function(showLegend) {
-        this.chart.showLegend(this.showLegend);
-      },
-
-      _setUseInteractiveGuideline: function(useInteractiveGuideline) {
-        this.chart.useInteractiveGuideline(this.useInteractiveGuideline);
       },
 
       _setWidth: function(width) {
