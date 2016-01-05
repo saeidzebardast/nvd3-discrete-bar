@@ -13,7 +13,7 @@ bower install nvd3-discrete-bar
 ### Tag
 
 ```
-<nvd3-discrete-bar data="[[data]]"></nvd3-discrete-bar>
+<nvd3-discrete-bar data="[[data]]" auto-resize></nvd3-discrete-bar>
 ```
 
 ### Data Format
