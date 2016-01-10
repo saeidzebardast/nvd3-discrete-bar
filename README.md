@@ -40,6 +40,9 @@ bower install nvd3-discrete-bar
 ]
 ```
 
+## Demo and Options
+See the [component page](http://saeidzebardast.github.io/nvd3-discrete-bar) for demo and options.
+
 ## License
 
 MIT © [Saeid Zebardast](http://zebardast.com)
