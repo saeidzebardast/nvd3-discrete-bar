@@ -1,0 +1,40 @@
+{
+  "name": "nvd3-discrete-bar",
+  "authors": [
+    "Saeid Zebardast <saeid.zebardast@gmail.com>"
+  ],
+  "description": "Discrete bar chart element for Polymer using nvd3.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "nvd3",
+    "d3",
+    "chart"
+  ],
+  "main": "nvd3-discrete-bar.html",
+  "license": "http://saeidzebardast.github.io/nvd3-elements/LICENSE.txt",
+  "homepage": "https://github.com/saeidzebardast/nvd3-discrete-bar/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "nvd3-behavior": "^0.6.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*",
+    "github-fork-ribbon": "^0.2.0"
+  },
+  "_release": "5e4678dd35",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "5e4678dd35b85985554f3be38271dfbd3114102c"
+  },
+  "_source": "git://github.com/saeidzebardast/nvd3-discrete-bar.git",
+  "_target": "master",
+  "_originalSource": "saeidzebardast/nvd3-discrete-bar",
+  "_direct": true
+}

@@ -1,0 +1,190 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../nvd3-behavior/nvd3-behavior.html">
+
+<!--
+An element to create discrete bar chart using nvd3.
+
+Example:
+
+    <nvd3-discrete-bar
+      data="[[data]]"
+      height="100"
+      width="400"
+      auto-resize>
+    </nvd3-discrete-bar>
+
+Data Format:
+```
+[
+  {
+    key: "Cumulative Return",
+    values: [
+      {
+        "label" : "A" ,
+        "value" : -29.765957771107
+      } ,
+      {
+        "label" : "B" ,
+        "value" : 0
+      } ,
+      {
+        "label" : "C" ,
+        "value" : 32.807804682612
+      }
+    ]
+  }
+]
+```
+
+@group NVD3 Elements
+@element nvd3-discrete-bar
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="nvd3-discrete-bar">
+  <template>
+    <!-- We need to put svg tag inside a div to set correct margins -->
+    <div>
+      <svg></svg>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nvd3-discrete-bar',
+      behaviors: [NVD3.ChartBehavior],
+      properties: {
+        /**
+         * NVD3 chart object.
+         */
+        chart: {
+          type: Object,
+          value: function() {
+            return  nv.models.discreteBarChart()
+              .x(function(d) {
+                return d.label
+              })
+              .y(function(d) {
+                return d.value
+              });
+          }
+        },
+
+        /**
+         * Colors to use for the different data.
+         * If an array is given, it is converted to a function automatically.
+         */
+        color: {
+          type: Array,
+          value: function() {
+            nv.utils.defaultColor();
+          }
+        },
+
+        /**
+         * The height the graph or component created inside the SVG should be made.
+         * Default: The height of the container element (normally the svg itself).
+         */
+        height: {
+          type: Number
+        },
+
+        /**
+         * Object containing the margins for the chart or component.
+         * You can specify only certain margins in the object to change just
+         * those parts.
+         */
+        margin: {
+          type: Object,
+          value: {
+            "left": null,
+            "right": null,
+            "top": null,
+            "bottom": null
+          }
+        },
+
+        /**
+         * Message to display if no data is provided.
+         */
+        noData: {
+          type: String,
+          value: 'No Data Available.'
+        },
+
+        /**
+         * The width the graph or component created inside the SVG should be made.
+         * Default: The width of the container element (normally the svg itself).
+         */
+        width: {
+          type: Number
+        }
+      },
+
+      observers: [
+        '_setColor(color.length)',
+        '_setHeight(height)',
+        '_setMargin(margin.top, margin.right, margin.bottom, margin.left)',
+        '_setNoData(noData)',
+        '_setWidth(width)'
+      ],
+
+      _setColor: function(colorLength) {
+        this.chart.color(this.color);
+      },
+
+      _setHeight: function(height) {
+        if (typeof height === 'number' && height > 0) {
+          this.chart.height(height);
+        }
+      },
+
+      _setMargin: function(marginTop, marginRight, marginBottom, marginLeft) {
+        if (marginTop) {
+          this.chart.margin({
+            "top": marginTop
+          });
+        }
+
+        if (marginRight) {
+          this.chart.margin({
+            "right": marginRight
+          });
+        }
+
+        if (marginBottom) {
+          this.chart.margin({
+            "bottom": marginBottom
+          });
+        }
+
+        if (marginLeft) {
+          this.chart.margin({
+            "left": marginLeft
+          });
+        }
+      },
+
+      _setNoData: function(noData) {
+        this.chart.noData(this.noData);
+      },
+
+      _setWidth: function(width) {
+        if (typeof width === 'number' && width > 0) {
+          this.chart.width(width);
+        }
+      },
+
+      ready: function() {
+        this.set('svg', this.$$('svg'));
+      },
+
+      attached: function() {
+        if (!this.stopAutoDrawing) {
+          this.generateChart();
+        }
+      }
+    });
+  </script>
+</dom-module>
